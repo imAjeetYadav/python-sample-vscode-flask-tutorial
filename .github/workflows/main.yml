@@ -24,10 +24,17 @@ jobs:
       - name: Run Script
         run: |
           python3 startup.py
+          
       - uses: mr-smithers-excellent/docker-build-push@v5
         with:
-            image: imajeetyadav/python-demo
+            # Username - imajeetyadav
+            # Image Name - python-demo
+            # Tag - latest
+            image: imajeetyadav/python-demo:latest
+            # Registry supported - Docker Hub, GitHub Docker Registry ,Google Container Registry (GCR), AWS Elastic Container Registry (ECR)
             registry: docker.io
+            # Docker Credential 
+            # Two-factor Authentication Must Be Disable
             username: ${{ secrets.DOCKER_USERNAME }}
             password: ${{ secrets.DOCKER_PASSWORD }}
           
