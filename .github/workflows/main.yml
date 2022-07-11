@@ -30,7 +30,8 @@ jobs:
             # Username - imajeetyadav
             # Image Name - python-demo
             # Tag - latest
-            image: imajeetyadav/python-demo:latest
+            image: imajeetyadav/python-demo
+            tags: v1, latest
             # Registry supported - Docker Hub, GitHub Docker Registry ,Google Container Registry (GCR), AWS Elastic Container Registry (ECR)
             registry: docker.io
             # Docker Credential 
