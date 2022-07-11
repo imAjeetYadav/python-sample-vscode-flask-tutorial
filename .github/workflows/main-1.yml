@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  Python:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Import Package
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run Script
+        run: |
+          python3 startup.py
+          
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+            # Username - imajeetyadav
+            # Image Name - python-demo
+            # Tag - latest
+            image: imajeetyadav/python-demo
+            tags: v1, latest
+            # Registry supported - Docker Hub, GitHub Docker Registry ,Google Container Registry (GCR), AWS Elastic Container Registry (ECR)
+            registry: docker.io
+            # Docker Credential 
+            # Two-factor Authentication Must Be Disable
+            username: ${{ secrets.DOCKER_USERNAME }}
+            password: ${{ secrets.DOCKER_PASSWORD }}
+          
+          
